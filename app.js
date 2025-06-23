@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector("dialog + button");
+const closeButton = document.querySelector("dialog button");
+
+// "Close" button closes the dialog
+closeButton.addEventListener("click", () => {
+  dialog.close();
+});
+
   const squares = document.querySelectorAll('.grid div')
   const scoreDisplay = document.querySelector('span')
   const startBtn = document.querySelector('.start')
@@ -15,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let intervalTime = 0
   let interval = 0
 
-
   //to start, and restart the game
   function startGame() {
     currentSnake.forEach(index => squares[index].classList.remove('snake'))
@@ -24,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     score = 0
     randomApple()
     direction = 1
+    newDirection = 1
     scoreDisplay.innerText = score
     intervalTime = 100
     currentSnake = [100,99,88]
@@ -53,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Does not allow a reverse or the same direction
     if (Math.abs(newDirection) !== Math.abs(direction)) {
-    direction = newDirection;
+      direction = newDirection;
     }
 
     //deals with snake getting apple

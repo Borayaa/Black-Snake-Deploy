@@ -1,3 +1,10 @@
+#centerpoint {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+}
+
+
 body {
   margin: 0;
   padding: 0;
