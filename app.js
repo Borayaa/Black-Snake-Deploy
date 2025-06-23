@@ -9,6 +9,7 @@ closeButton.addEventListener("click", () => {
   dialog.close();
 });
 
+
   const squares = document.querySelectorAll('.grid div')
   const scoreDisplay = document.querySelector('span')
   const startBtn = document.querySelector('.start')
@@ -19,7 +20,8 @@ closeButton.addEventListener("click", () => {
   let appleIndex = 0 //so first div in our grid
   let currentSnake = [100,99,98] 
   let direction = 1
-  let newDirection = 1
+  let newDirection = [1]
+  newDirection.length = 2
   let score = 0
   let speed = 0.9
   let intervalTime = 0
@@ -33,7 +35,8 @@ closeButton.addEventListener("click", () => {
     score = 0
     randomApple()
     direction = 1
-    newDirection = 1
+    newDirection = [1]
+    console.log(newDirection)
     scoreDisplay.innerText = score
     intervalTime = 100
     currentSnake = [100,99,88]
@@ -62,8 +65,14 @@ closeButton.addEventListener("click", () => {
     currentSnake.unshift(currentSnake[0] + direction) //gives direction to the head of the array
 
     // Does not allow a reverse or the same direction
-    if (Math.abs(newDirection) !== Math.abs(direction)) {
-      direction = newDirection;
+    if (newDirection[0] != null) {
+
+      if (Math.abs(newDirection[0]) !== Math.abs(direction)) { 
+        direction = newDirection.shift();
+        console.log(newDirection)
+      } else {
+        newDirection.shift()
+      }
     }
 
     //deals with snake getting apple
@@ -101,25 +110,25 @@ closeButton.addEventListener("click", () => {
         case "KeyW":
         case "ArrowUp":
           // Handle "forward"
-          newDirection = -width;
+          newDirection.push(-width);
           break;
   
         case "KeyS":
         case "ArrowDown":
           // Handle "back"
-          newDirection = width;
+          newDirection.push(width);
           break;
   
         case "KeyA":
         case "ArrowLeft":
           // Handle "turn left"
-          newDirection = -1;
+          newDirection.push(-1);
           break;
   
         case "KeyD":
         case "ArrowRight":
           // Handle "turn right"
-          newDirection = 1;
+          newDirection.push(1);
           break;
 
         }
@@ -130,9 +139,12 @@ closeButton.addEventListener("click", () => {
           startGame();
           break;
       }
-    }
+      console.log(newDirection)
+  }
   
   // user input function
-  window.addEventListener("keydown", playerInput)
+  if (newDirection.length <= 2) {
+    window.addEventListener("keydown", playerInput)
+  } 
   startBtn.addEventListener('click', startGame)
 })
