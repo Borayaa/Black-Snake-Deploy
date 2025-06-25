@@ -1,23 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <script src="app.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="style.css">
-    <title>Snake Tutorial</title>
+    <link rel="stylesheet" href="style.css" />
+    <title>Black Snake</title>
   </head>
   <body>
-    <dialog open id="centerpoint">
+    <img
+      src="asset/images/englishbright.png"
+      alt="EnglishBright"
+      class="center brand"
+    />
+    <dialog open class="center">
       <h2>Game ini hanya bisa dimainkan dengan keyboard!</h2>
-      <h3>Black Snake dibuat khusus desktop. Sehingga akan terlihat buruk di device lainnya</h3>
+      <h3>
+        Black Snake dibuat khusus desktop. Sehingga akan terlihat buruk di
+        device lainnya
+      </h3>
       <p>Tekan "Enter" pada keyboard untuk memulai dan mengulang game</p>
       <p>Gunakan WSAD atau arrow key untuk menggerakan black snake</p>
       <button autofocus>Ok</button>
     </dialog>
-    <button class='start'>Start/Restart</button>
-    <div class='score'><span>0</span></div>
-<!-- 1269 grid, 27 columns * 48 rows -->
-    <div class='grid'>
+    <dialog class="center" id="start" style="margin-top: 210px">
+      <div class="align-item-horizontal">
+        <h2>Score: <span id="score">0</span></h2>
+        <h2>High Score: <span id="highScore">0</span></h2>
+        <button id="start">START</button>
+      </div>
+      <div class="socialLink align-item-horizontal">
+        <a href="https://www.instagram.com/englishbright/">
+          <img src="asset/images/instagram.svg" alt="instagram" />
+          <p>englishbright</p>
+        </a>
+        <a href="https://x.com/EnglishBright">
+          <img src="asset/images/x.svg" alt="X" />
+          <p>englishbright</p>
+        </a>
+        <a href="https://www.tiktok.com/@englishbright.id">
+          <img src="asset/images/tiktok.svg" alt="tiktok" />
+          <p>englishbright.id</p>
+        </a>
+        <a href="https://englishbright.id">
+          <img src="asset/images/logoEB.svg" alt="Website" />
+          <p>www.englishbright.id</p>
+        </a>
+        <a href="https://www.youtube.com/@englishbrightinternational">
+          <img src="asset/images/youtube.svg" alt="Youtube" />
+          <p>englishbrightinternational</p>
+        </a>
+        <a href="https://wa.me/6281240634212">
+          <img src="asset/images/whatsapp.svg" alt="Whatsapp" />
+          <p>0812-4063-4212</p>
+        </a>
+      </div>
+    </dialog>
+    <div class="currentScore" id="score"><span>0</span></div>
+    <!-- 1269 grid, 27 columns * 48 rows -->
+    <div class="grid">
       <div></div>
       <div></div>
       <div></div>
@@ -1315,6 +1355,5 @@
       <div></div>
       <div></div>
     </div>
-
   </body>
 </html>
