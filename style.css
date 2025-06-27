@@ -7,9 +7,10 @@
 }
 
 #start {
+  overflow: hidden;
   background-color: yellow;
   border: none;
-  width: 100%;
+  width: 100vw;
 }
 
 #start div button {
@@ -63,11 +64,6 @@
   margin-right: 50px;
 }
 
-.socialLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .socialLink a {
   margin: 6px;
@@ -132,4 +128,106 @@ body {
 
 .apple {
   background-color: green;
+}
+
+#arrow-container {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 700px;
+  height: 700px 
+  user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;}
+
+.btn-direction {
+  background: rgba(0, 0, 0, 0);
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes click-arrow {
+  0% { opacity: 0.2;
+   filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="red-filter" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/></filter></svg>#red-filter');
+  }
+  25% { opacity: 0.4; 
+   filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="red-filter" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/></filter></svg>#red-filter');
+  }
+  50% { opacity: 0.8; 
+   filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="red-filter" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/></filter></svg>#red-filter');
+  }
+  100% { opacity: 0.3; filter: none;}
+}
+
+
+
+.btn-direction:focus {
+  animation: click-arrow 1s ;  
+}
+
+.btn-direction img {
+  opacity: 0.3;
+  width: 200px;
+  height: 200px;
+  user-drag: none;
+  draggable: false;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+
+#arrow-up {
+  transform: rotate(180deg);
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+#arrow-down {
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+#arrow-left {
+  transform: rotate(90deg);
+  margin-right: 90px;
+  margin-left: 55px;
+}
+
+#arrow-right {
+  transform: rotate(270deg);
+  margin-left: 90px;
+}
+
+@media (min-width: 1025px) {
+  .socialLink {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+  }
+
+  #arrow-container {
+    display: none;
+  }
+
+  #arrow-container button {
+    display: none;
+  }
 }

@@ -1,3 +1,12 @@
+function simplifyFraction(numerator, denominator) {
+  // gcd = greatest common denominator
+  let gcd = function gcd(a, b) {
+    return b ? gcd(b, a % b) : a;
+  };
+  gcd = gcd(numerator, denominator);
+  return [numerator / gcd, denominator / gcd];
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const dialog = document.querySelector("dialog");
   const closeButton = document.querySelector("dialog button");
@@ -15,13 +24,34 @@ document.addEventListener("DOMContentLoaded", () => {
     startDialog.close();
   });
 
+  let vw = Math.max(
+    document.documentElement.clientWidth || 0,
+    window.innerWidth || 0,
+  );
+  let vh = Math.max(
+    document.documentElement.clientHeight || 0,
+    window.innerHeight || 0,
+  );
+
+  const aspectRatio = vh > vw ? [9, 16] : [16, 9];
+  const width = aspectRatio[0] * 3;
+  const height = aspectRatio[1] * 3;
+  const squareAmount = width * height;
+
+  const grid = document.querySelector(".grid");
+  for (let i = 0; i < squareAmount; i++) {
+    grid.innerHTML += "<div></div>";
+  }
+
   const squares = document.querySelectorAll(".grid div");
+  squares.forEach((square) => {
+    square.style.setProperty("width", "calc(100% / " + width + ")");
+    square.style.setProperty("height", "calc(100% / " + height + ")");
+  });
 
   const scoreDisplay = document.querySelectorAll("#score");
   const highScoreDisplay = document.querySelectorAll("#highScore");
 
-  const width = 48;
-  const height = 27;
   let currentIndex = 0; //so first div in our grid
   let appleIndex = 0; //so first div in our grid
   let currentSnake = [100, 99, 98];
@@ -36,6 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
   //to start, and restart the game
   function startGame() {
     startDialog.close();
+    document.activeElement.blur();
+    dialog.close();
     currentSnake.forEach((index) => squares[index].classList.remove("snake"));
     squares[currentSnake[0]].classList.remove("head");
     squares[appleIndex].classList.remove("apple");
@@ -128,8 +160,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (newDirection.length >= 3) {
       newDirection.shift();
     }
+
+    if (event.code) {
+      event = event.code;
+    }
+
     // Player movement control
-    switch (event.code) {
+    switch (event) {
       case "KeyW":
       case "ArrowUp":
         // Handle "forward"
@@ -156,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Restart game
-    switch (event.code) {
+    switch (event) {
       case "Enter":
         startGame();
         break;
@@ -168,9 +205,22 @@ document.addEventListener("DOMContentLoaded", () => {
         newDirection.shift();
       }
     }
-    console.log(newDirection);
+    console.log("player input registered");
+    console.log(event);
   }
 
   // user input function
   window.addEventListener("keydown", playerInput);
+  document.getElementById("arrow-up").addEventListener("click", function () {
+    playerInput("ArrowUp");
+  });
+  document.getElementById("arrow-down").addEventListener("click", function () {
+    playerInput("ArrowDown");
+  });
+  document.getElementById("arrow-left").addEventListener("click", function () {
+    playerInput("ArrowLeft");
+  });
+  document.getElementById("arrow-right").addEventListener("click", function () {
+    playerInput("ArrowRight");
+  });
 });
