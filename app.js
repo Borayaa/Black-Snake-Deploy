@@ -8,8 +8,8 @@ function simplifyFraction(numerator, denominator) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const dialog = document.querySelector("dialog");
-  const closeButton = document.querySelector("dialog button");
+  const dialog = document.querySelector(".keybind");
+  const closeButton = document.querySelector(".keybind button");
 
   // "Close" button closes the dialog
   closeButton.addEventListener("click", () => {
@@ -33,7 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
     window.innerHeight || 0,
   );
 
-  const aspectRatio = vh > vw ? [9, 16] : [16, 9];
+  let aspectRatio;
+  if (vh > vw) {
+    aspectRatio = [9, 16];
+    dialog.close();
+    startDialog.show();
+  } else {
+    aspectRatio = [16, 9];
+  }
   const width = aspectRatio[0] * 3;
   const height = aspectRatio[1] * 3;
   const squareAmount = width * height;
@@ -65,9 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //to start, and restart the game
   function startGame() {
+    dialog.close();
     startDialog.close();
     document.activeElement.blur();
-    dialog.close();
     currentSnake.forEach((index) => squares[index].classList.remove("snake"));
     squares[currentSnake[0]].classList.remove("head");
     squares[appleIndex].classList.remove("apple");
@@ -200,9 +207,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Does not allow a reverse or the same direction
-    if (newDirection[0] != null) {
+    if (newDirection[newDirection.length - 1] != null) {
       if (Math.abs(newDirection[0]) == Math.abs(direction)) {
         newDirection.shift();
+      }
+      if (newDirection.length > 1) {
+        if (
+          Math.abs(newDirection[0]) == Math.abs(newDirection[1]) ||
+          Math.abs(newDirection[1]) == Math.abs(newDirection[2])
+        ) {
+          newDirection.shift();
+        }
       }
     }
     console.log("player input registered");

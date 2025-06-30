@@ -13,8 +13,8 @@ deployment:
     - /bin/cp -R ${DEPLOYPATH} ${DEPLOYPATH}_old
     # Sync repository files to the deploy target path, excluding .git folder.
     # --delete-after will remove deleted files and folders after syncing.
-    - /bin/cp -TRv $REPOPATH $DEPLOYPATH
-    - /bin/rm -Rf $DEPLOYPATH/.git
+    - /bin/cp -TRv ${REPOPATH} ${DEPLOYPATH}
+    - /bin/rm -Rf ${DEPLOYPATH}/.git
     # Set correct permissions.
     - /bin/chmod 755 ${DEPLOYPATH}
     - /bin/find ${DEPLOYPATH} -type d -exec /bin/chmod 755 '{}' \;

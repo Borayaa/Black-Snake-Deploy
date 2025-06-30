@@ -52,7 +52,7 @@
   width: 80%;
 }
 
-.align-item-horizontal {
+.menu, .align-item-horizontal {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -217,10 +217,16 @@ body {
 }
 
 @media (min-width: 1025px) {
+  .stat-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+  }
+
   .socialLink {
     display: flex;
-    align-items: left;
-    justify-content: left;
+    align-items: center;
+    justify-content: center;
   }
 
   #arrow-container {
@@ -229,5 +235,69 @@ body {
 
   #arrow-container button {
     display: none;
+  }
+}
+
+@media (max-width: 1025px) {
+  .keybind {
+    display: none;
+  }
+
+
+  #score {
+    margin-right: 50%;
+  }
+  #highScore {
+    width: 50%;
+    height: 90vh;
+  }
+
+  .menu {
+  display: grid;
+}
+
+  .menu h2 {
+  width: 400px;
+  font-size: 40px;
+  }
+
+  .menu h2:first-of-type {
+    margin-left: 190px;
+  }
+  .menu h2:nth-of-type(2) {
+    margin-left: 20px;
+  }
+
+  #start div button {
+  grid-column: span 2; /* Spans both columns */
+  justify-self: center; /* Centers horizontally */
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 300px;
+  height: 100px;
+  font-size: 50px;
+  }
+
+  .socialLink {
+    display: inherit;
+  }
+
+  .socialLink a {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    height: 90px;
+    text-decoration: none;
+
+  }
+
+  .socialLink a img {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+  }
+
+  .socialLink a p {
+    font-size: 40px;
   }
 }
