@@ -218,7 +218,7 @@ body {
 
 @media (min-width: 1025px) {
   #start {
-margin-top: 210px
+    top: 70%;
   }
   .stat-container {
     display: flex;
@@ -243,7 +243,7 @@ margin-top: 210px
 
 @media (max-width: 1025px) {
   #start {
-    margin-top: -100px;
+    top: 40%;
   }
 
   .keybind {
