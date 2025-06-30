@@ -230,16 +230,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // user input function
   window.addEventListener("keydown", playerInput);
-  document.getElementById("arrow-up").addEventListener("click", function () {
+  document.getElementById("arrow-up").onclick = function () {
     playerInput("ArrowUp");
-  });
-  document.getElementById("arrow-down").addEventListener("click", function () {
+  };
+  document.getElementById("arrow-down").onclick = function () {
     playerInput("ArrowDown");
-  });
-  document.getElementById("arrow-left").addEventListener("click", function () {
+  };
+  document.getElementById("arrow-left").onclick = function () {
     playerInput("ArrowLeft");
-  });
-  document.getElementById("arrow-right").addEventListener("click", function () {
+  };
+  document.getElementById("arrow-right").onclick = function () {
     playerInput("ArrowRight");
-  });
+  };
 });
