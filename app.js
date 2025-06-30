@@ -1,3 +1,6 @@
+const movementAudio = new Audio("asset/audio/movement.wav");
+const scoreAudio = new Audio("asset/audio/score.wav");
+const deathAudio = new Audio("asset/audio/death.flac");
 document.addEventListener("DOMContentLoaded", () => {
   const dialog = document.querySelector(".keybind");
   const closeButton = document.querySelector(".keybind button");
@@ -112,12 +115,14 @@ document.addEventListener("DOMContentLoaded", () => {
       (currentSnake[0] - width < 0 && direction === -width) || //if snake hits the top
       squares[currentSnake[0] + direction].classList.contains("snake") //if snake goes into itself
     ) {
+      deathAudio.play();
       return gameOver();
     }
 
     const tail = currentSnake.pop(); //removes last ite of the array and shows it
     squares[tail].classList.remove("snake"); //removes class of snake from the TAIL
     currentSnake.unshift(currentSnake[0] + direction); //gives direction to the head of the array
+    // movementAudio.play();
 
     if (newDirection[0] != null) {
       direction = newDirection.shift();
@@ -131,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
       currentSnake.push(tail);
       randomApple();
       score++;
+      scoreAudio.play();
       scoreDisplay.forEach((scoreDisplayer) => {
         scoreDisplayer.textContent = score;
       });
