@@ -1,12 +1,3 @@
-function simplifyFraction(numerator, denominator) {
-  // gcd = greatest common denominator
-  let gcd = function gcd(a, b) {
-    return b ? gcd(b, a % b) : a;
-  };
-  gcd = gcd(numerator, denominator);
-  return [numerator / gcd, denominator / gcd];
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const dialog = document.querySelector(".keybind");
   const closeButton = document.querySelector(".keybind button");
@@ -34,12 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   let aspectRatio;
+  let isMobile;
   if (vh > vw) {
     aspectRatio = [9, 16];
+    isMobile = true;
     dialog.close();
     startDialog.show();
   } else {
     aspectRatio = [16, 9];
+    isMobile = false;
   }
   const width = aspectRatio[0] * 3;
   const height = aspectRatio[1] * 3;
@@ -61,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentIndex = 0; //so first div in our grid
   let appleIndex = 0; //so first div in our grid
-  let currentSnake = [100, 99, 98];
+  let currentSnake = [2, 1, 0];
   let direction = 1;
   let newDirection = [1];
   let score = 0;
@@ -89,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(newDirection);
     scoreDisplay.innerText = score;
     intervalTime = 100;
-    currentSnake = [100, 99, 88];
+    currentSnake = [2, 1, 0];
     currentIndex = 0;
     currentSnake.forEach((index) => squares[index].classList.add("snake"));
     interval = setInterval(moveOutcomes, intervalTime);
@@ -153,7 +147,11 @@ document.addEventListener("DOMContentLoaded", () => {
   //generate new apple once apple is eaten
   function randomApple() {
     do {
-      appleIndex = Math.floor(Math.random() * squares.length);
+      if (isMobile) {
+        appleIndex = Math.floor(Math.random() * squares.length - 2 * width);
+      } else {
+        appleIndex = Math.floor(Math.random() * squares.length);
+      }
     } while (squares[appleIndex].classList.contains("snake")); //making sure apples dont appear on the snake
     squares[appleIndex].classList.add("apple");
   }

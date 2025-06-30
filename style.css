@@ -217,6 +217,9 @@ body {
 }
 
 @media (min-width: 1025px) {
+  #start {
+margin-top: 210px
+  }
   .stat-container {
     display: flex;
     align-items: center;
@@ -239,6 +242,10 @@ body {
 }
 
 @media (max-width: 1025px) {
+  #start {
+    margin-top: -100px;
+  }
+
   .keybind {
     display: none;
   }
