@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function randomApple() {
     do {
       if (isMobile) {
-        appleIndex = Math.floor(Math.random() * (squares.length - 3 * width));
+        appleIndex = Math.floor(Math.random() * (squares.length - 5 * width));
       } else {
         appleIndex = Math.floor(Math.random() * squares.length);
       }
